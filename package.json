@@ -1,0 +1,38 @@
+{
+  "name": "jutsu",
+  "version": "0.1.0",
+  "description": "",
+  "main": "bin/index.js",
+  "bin": {
+    "jutsu": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@helia/http": "^1.0.11",
+    "@helia/unixfs": "^3.0.7",
+    "@inquirer/prompts": "^5.4.0",
+    "ame-sdk": "^0.1.5",
+    "axios": "^1.7.7",
+    "cli-color": "^2.0.4",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5",
+    "file-type": "^19.5.0",
+    "form-data": "^4.0.0",
+    "fs-extra": "^11.2.0",
+    "got": "^14.4.2",
+    "helia": "^4.2.6",
+    "nanospinner": "^1.1.0",
+    "ora": "^8.1.0",
+    "pinata": "^1.2.0",
+    "pinata-web3": "^0.4.1",
+    "recursive-fs": "^2.1.0",
+    "solc": "0.8.9",
+    "viem": "^2.21.2",
+    "web3": "1.10.3"
+  }
+}
