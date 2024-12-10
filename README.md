@@ -21,11 +21,11 @@ jutsu new <project name>
 `
 
 **Project file directory**   
-  ├ src/   
-  ├ .env   
-  ├ config.json   
-  ├ .gitignore   
-  └ README.md 
+├ src/   
+├ .env   
+├ config.json   
+├ .gitignore   
+└ README.md 
 
 
 **src**  

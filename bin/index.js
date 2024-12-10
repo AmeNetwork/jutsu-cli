@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 program
   .name("jutsu")
   .description("CLI to some JavaScript string utilities")
-  .version("0.1.0", "-v, --version", "output the current version");
+  .version("0.2.0", "-v, --version", "output the current version");
 
 program
   .command("new")
@@ -25,12 +25,16 @@ program
     if (fs.existsSync(_projectName)) {
       console.log(clc.red("File already exists"));
     } else {
-      const templatePath = path.join(__dirname, "template");
-      const destFolder = path.join(process.cwd(), _projectName);
-      lib.copyFolder(templatePath, destFolder);
-      lib.initConfig(_projectName);
-      lib.initLocal(_projectName);
-      lib.printFileStruct(_projectName);
+
+      // const templatePath = path.join(__dirname, "template");
+      // const destFolder = path.join(process.cwd(), _projectName);
+      lib.initNewProject(_projectName)
+
+
+      // lib.copyFolder(templatePath, destFolder);
+      // lib.initConfig(_projectName);
+      // lib.initLocal(_projectName);
+      // lib.printFileStruct(_projectName);
     }
   });
 

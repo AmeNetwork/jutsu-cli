@@ -21,13 +21,35 @@ import { AmeViem } from "ame-sdk";
 // import  abi  from "ame-sdk/abi/AmeComponent.json" assert { type: "json" };;
 
 const OPRPC = {
-  id: 31337,
+  id: 10,
   rpcUrls: {
-    default: { http: ["http://127.0.0.1:8545"] },
+    default: { http: ["https://optimism.llamarpc.com"] },
   },
 };
 const PinataURL = "https://gateway.pinata.cloud/ipfs/";
-const OPJutsuComponent = "0xaDA14aaF760bB06CdFF369FD47240d5352aBca63";
+const OPJutsuComponent = "0x0E2b5cF475D1BAe57C6C41BbDDD3D99ae6Ea59c7";
+
+
+// const OPRPC = {
+//   id: 31337,
+//   rpcUrls: {
+//     default: { http: ["http://127.0.0.1:8545"] },
+//   },
+// };
+// const PinataURL = "https://gateway.pinata.cloud/ipfs/";
+// const OPJutsuComponent = "0xaDA14aaF760bB06CdFF369FD47240d5352aBca63";
+
+
+const initNewProject=(_projectName)=>{
+  const destFolder = path.join(process.cwd(), _projectName);
+  fs.mkdirSync(destFolder, { recursive: true });
+  fs.mkdirSync(path.join(destFolder, "src"), { recursive: true });
+  initConfig(_projectName);
+  initLocal(_projectName);
+  initGitignore(_projectName);
+  initReadme(_projectName);
+  printFileStruct(_projectName);
+}
 
 const copyFolder = (_sourceFolder, _destFolder) => {
   fs.mkdirSync(_destFolder, { recursive: true });
@@ -55,6 +77,22 @@ const initConfig = (_projectName) => {
 `;
   fs.writeFileSync(_projectName + "/config.json", config);
 };
+
+const initReadme = (_projectName) => {
+  fs.writeFileSync(_projectName + "/README.md", "");
+};
+
+const initGitignore=(_projectName)=>{
+  const gitignore = `
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+  `;
+    fs.writeFileSync(_projectName + "/.gitignore", gitignore);
+}
 
 const printFileStruct = (_projectName) => {
   console.log(_projectName);
@@ -372,7 +410,8 @@ async function publishComponent() {
         config.name != "" &&
         config.name != undefined &&
         config.version != "" &&
-        config.version != undefined
+        config.version != undefined&&
+        !config.name.includes(' ')
       ) {
         if (process.env.PINATA_JWT != undefined) {
           if (process.env.WALLET_PRIVATE_KEY != undefined) {
@@ -488,7 +527,7 @@ async function publishComponent() {
       } else {
         spinner.fail(
           clc.red(
-            "Please check whether the name and version are configured in the config.json file."
+            "Please check whether the name and version are configured in the config.json file. Do not include spaces in the name."
           )
         );
       }
@@ -681,4 +720,5 @@ export default {
   deploy,
   installComponent,
   publishComponent,
+  initNewProject
 };
